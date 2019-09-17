@@ -8,7 +8,7 @@ def starting_posistion():
     return x , y , lx, ly
 
 def get_user_input():
-    return input("Where do you want to move? ").lower()
+    return input("Direction: ").lower()
 
 def what_direction_to_move(current_user_input,x,y):
     #north
@@ -25,7 +25,7 @@ def what_direction_to_move(current_user_input,x,y):
         x -=1
     return x, y
 
-def is_user_user_in_range(x, y, lx, ly):
+def is_user_in_range(x, y, lx, ly):
     # Here below is the whole frame
     if x > 3:
         x = 3
@@ -66,7 +66,7 @@ def is_user_user_in_range(x, y, lx, ly):
 
     if x == 3 and y == 1:
         print("Victory!")
-        pass
+        x = 7
     
     #####
     #(1, 1)
@@ -128,17 +128,13 @@ def is_user_user_in_range(x, y, lx, ly):
 current_x, current_y, last_posistion_of_x, last_posistion_of_y = starting_posistion()
 
 #for the moment, to exit the while loop use "q"
-while True:
-    current_x, current_y = is_user_user_in_range(current_x, current_y, last_posistion_of_x, last_posistion_of_y)
-    print("x", current_x)
-    print("y", current_y)
-    print("last x", last_posistion_of_x)
-    print("last y", last_posistion_of_y)
+while current_x != 7:
+    current_x, current_y = is_user_in_range(current_x, current_y, last_posistion_of_x, last_posistion_of_y)
 
     last_posistion_of_x = current_x
     last_posistion_of_y = current_y
-
-    user_input = get_user_input()
+    if current_x != 7:
+        user_input = get_user_input()
     current_x, current_y = what_direction_to_move(user_input, current_x, current_y)
 
 
